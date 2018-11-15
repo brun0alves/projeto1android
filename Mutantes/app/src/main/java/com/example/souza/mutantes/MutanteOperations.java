@@ -62,7 +62,8 @@ public class MutanteOperations {
         Cursor cursor = database.query(MutanteBDWrapper.MUTANTE, MUTANTE_TABLE_COLUMNS, MutanteBDWrapper.MUTANTE_ID + " = " + id, null, null, null, null);
         cursor.moveToFirst();
 
-        Mutante hab = parseMutante2(cursor);
+
+        Mutante hab = parseMutante(cursor);
         cursor.close();
         return hab;
     }
@@ -88,15 +89,5 @@ public class MutanteOperations {
         mutante.setHabilidade(cursor.getString(2));
         return mutante;
     }
-
-    private Mutante parseMutante2(Cursor cursor) {
-        Mutante mutante = new Mutante();
-        mutante.setId(cursor.getInt(0));
-        mutante.setNome(cursor.getString(2));
-        mutante.setHabilidade(cursor.getString(1));
-        return mutante;
-    }
-
-
 
 }

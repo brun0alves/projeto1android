@@ -27,10 +27,11 @@ public class Detalhes extends AppCompatActivity {
         Bundle params = it.getExtras();
         int mutanteId = params.getInt("mutanteId");
 
-        Mutante hab = mutanteDBOperations.getMutanteById(mutanteId);
-
+        Mutante mutante = mutanteDBOperations.getMutanteById(mutanteId);
+        TextView nome = (TextView) findViewById(R.id.nome);
         TextView habilidade = (TextView) findViewById(R.id.hab);
-        habilidade.setText(hab.toString());
+        habilidade.setText(mutante.getHabilidade());
+        nome.setText(mutante.getNome());
     }
 
     public void deletar (View view) {
@@ -52,7 +53,7 @@ public class Detalhes extends AppCompatActivity {
         Bundle params2 = new Bundle();
         params2.putInt("mutanteId", mutanteId);
         params2.putInt("aux", aux);
-        it.putExtras(params2);
+        it2.putExtras(params2);
         startActivity(it2);
 
     }

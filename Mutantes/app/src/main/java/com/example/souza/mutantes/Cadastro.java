@@ -23,7 +23,10 @@ public class Cadastro extends AppCompatActivity {
     public void addHab(View view) {
         EditText habilidade = (EditText)findViewById(R.id.habilidade);
         aux=habilidade.getText().toString();
-        habilidades= habilidades+aux;
+        if(!habilidades.equals(""))
+        habilidades = habilidades + ", " + aux;
+        else
+            habilidades = aux;
     }
 
     public void finalizar(View view) {
