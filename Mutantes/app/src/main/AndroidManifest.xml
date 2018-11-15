@@ -19,7 +19,8 @@
         <activity android:name=".Cadastro" />
         <activity
             android:name=".Lista"
-            android:label="@string/title_activity_lista"></activity>
+            android:label="@string/title_activity_lista" />
+        <activity android:name=".Detalhes"></activity>
     </application>
 
 </manifest>

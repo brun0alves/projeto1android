@@ -33,21 +33,38 @@ public class MutanteOperations {
         ContentValues values = new ContentValues();
         values.put(MutanteBDWrapper.MUTANTE_NOME, nome);
         values.put(MutanteBDWrapper.MUTANTE_HABILIDADE, habilidade);
-        long studId = database.insert(MUTANTE, null, values);
+        long mutId = database.insert(MUTANTE, null, values);
         Cursor cursor = database.query(MutanteBDWrapper.MUTANTE,
                 MUTANTE_TABLE_COLUMNS, MutanteBDWrapper.MUTANTE_ID + " = "
-                        + studId, null, null, null, null);
+                        + mutId, null, null, null, null);
         cursor.moveToFirst();
         Mutante newComment = parseMutante(cursor);
         cursor.close();
         return newComment;
     }
 
-    public void deleteMutante(Mutante comment) {
-        long id = comment.getId();
+    public void deleteMutante(int id) {
         System.out.println("Removido id: " + id);
         database.delete(MutanteBDWrapper.MUTANTE, MutanteBDWrapper.MUTANTE_ID
                 + " = " + id, null);
+    }
+
+    public void updateMutante(String nome, String habilidade, int id) {
+        ContentValues values = new ContentValues();
+        values.put(MutanteBDWrapper.MUTANTE_NOME, nome);
+        values.put(MutanteBDWrapper.MUTANTE_HABILIDADE, habilidade);
+        database.update(MutanteBDWrapper.MUTANTE, values, MutanteBDWrapper.MUTANTE_ID + " = "
+                        + id, null);
+
+    }
+
+    public Mutante getMutanteById(int id) {
+        Cursor cursor = database.query(MutanteBDWrapper.MUTANTE, MUTANTE_TABLE_COLUMNS, MutanteBDWrapper.MUTANTE_ID + " = " + id, null, null, null, null);
+        cursor.moveToFirst();
+
+        Mutante hab = parseMutante2(cursor);
+        cursor.close();
+        return hab;
     }
 
     public List getAllMutante() {
@@ -69,6 +86,14 @@ public class MutanteOperations {
         mutante.setId(cursor.getInt(0));
         mutante.setNome(cursor.getString(1));
         mutante.setHabilidade(cursor.getString(2));
+        return mutante;
+    }
+
+    private Mutante parseMutante2(Cursor cursor) {
+        Mutante mutante = new Mutante();
+        mutante.setId(cursor.getInt(0));
+        mutante.setNome(cursor.getString(2));
+        mutante.setHabilidade(cursor.getString(1));
         return mutante;
     }
 

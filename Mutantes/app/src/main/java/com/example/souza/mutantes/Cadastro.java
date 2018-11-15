@@ -9,7 +9,7 @@ import android.widget.EditText;
 public class Cadastro extends AppCompatActivity {
 
     private MutanteOperations mutanteDBOperations;
-    String habilidades ="", aux;
+    String habilidades = "", aux;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +27,23 @@ public class Cadastro extends AppCompatActivity {
     }
 
     public void finalizar(View view) {
+
+        Intent it = getIntent();
+        Bundle params = it.getExtras();
+        int aux2 = params.getInt("aux");
+        int id = params.getInt("mutanteId");
+
         EditText nome = (EditText)findViewById(R.id.nome);
-        mutanteDBOperations.addMutante(nome.getText().toString(), habilidades);
-        Intent it = new Intent(this, MainActivity.class);
-        startActivity(it);
+
+        if (aux2 == 0) {
+            mutanteDBOperations.addMutante(nome.getText().toString(), habilidades);
+        }
+        if (aux2 == 1) {
+            mutanteDBOperations.updateMutante(nome.getText().toString(), habilidades, id);
+        }
+
+        Intent it2 = new Intent(this, MainActivity.class);
+        startActivity(it2);
 
 
     }

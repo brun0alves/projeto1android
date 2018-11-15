@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity {
 
+    int aux = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void cadastrar(View view) {
         Intent it = new Intent(this, Cadastro.class);
+        Bundle params = new Bundle();
+        params.putInt("aux", aux);
+        it.putExtras(params);
         startActivity(it);
     }
 
