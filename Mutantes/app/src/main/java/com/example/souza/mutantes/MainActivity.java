@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -21,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cadastrar(View view) {
-        Intent it = new Intent(this, Cadastro.class);
+        Intent it = new Intent(this, CadastroActivity.class);
         Bundle params = new Bundle();
         params.putInt("aux", aux);
         it.putExtras(params);
@@ -29,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void listar(View view) {
-        Intent it2 = new Intent(MainActivity.this, Lista.class);
+        Intent it2 = new Intent(MainActivity.this, ListaActivity.class);
         startActivity(it2);
 
     }

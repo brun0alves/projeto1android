@@ -16,11 +16,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Cadastro" />
+        <activity android:name=".CadastroActivity" />
         <activity
-            android:name=".Lista"
+            android:name=".ListaActivity"
             android:label="@string/title_activity_lista" />
-        <activity android:name=".Detalhes"></activity>
+        <activity android:name=".DetalhesActivity"></activity>
     </application>
 
 </manifest>

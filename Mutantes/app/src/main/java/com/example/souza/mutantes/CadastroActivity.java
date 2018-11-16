@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class Cadastro extends AppCompatActivity {
+public class CadastroActivity extends AppCompatActivity {
 
     private MutanteOperations mutanteDBOperations;
     String habilidades = "", aux;
