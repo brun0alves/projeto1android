@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Cadastro extends AppCompatActivity {
 
@@ -37,18 +38,17 @@ public class Cadastro extends AppCompatActivity {
         int id = params.getInt("mutanteId");
 
         EditText nome = (EditText)findViewById(R.id.nome);
-
-        if (aux2 == 0) {
-            mutanteDBOperations.addMutante(nome.getText().toString(), habilidades);
+        if (!(habilidades.equals("") || nome.getText().toString().equals(""))) {
+            if (aux2 == 0) {
+                mutanteDBOperations.addMutante(nome.getText().toString(), habilidades);
+            }
+            if (aux2 == 1) {
+                mutanteDBOperations.updateMutante(nome.getText().toString(), habilidades, id);
+            }
+            finish();
         }
-        if (aux2 == 1) {
-            mutanteDBOperations.updateMutante(nome.getText().toString(), habilidades, id);
-        }
-
-        Intent it2 = new Intent(this, MainActivity.class);
-        startActivity(it2);
-
-
+        else
+            Toast.makeText(this, "Preencha todos os dados e adicione habilidades!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
