@@ -22,6 +22,7 @@ public class DetalhesActivity extends AppCompatActivity {
         Bundle params = it.getExtras();
         int mutanteId = params.getInt("mutanteId");
         mutanteDBOperations.deleteMutante(mutanteId);
+        finish();
 
     }
 
