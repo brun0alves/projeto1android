@@ -44,7 +44,8 @@ public class CadastroActivity extends AppCompatActivity {
             int id = params.getInt("mutanteId");
 
             EditText nome = (EditText) findViewById(R.id.nome);
-            if (!(habilidades.equals("") || nome.getText().toString().equals(""))) {
+            EditText habilidade = (EditText) findViewById(R.id.habilidade);
+            if (!(habilidade.getText().toString().equals("")|| nome.getText().toString().equals(""))) {
                 if (aux2 == 0) {
                     List<Mutante> mutantes = mutanteDBOperations.getAllMutante();
                     for (Mutante m : mutantes) {
