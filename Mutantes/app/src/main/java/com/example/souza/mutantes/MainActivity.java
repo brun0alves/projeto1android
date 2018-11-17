@@ -33,7 +33,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pesquisar(View view) {
-
+        Intent it = new Intent(MainActivity.this, BuscaActivity.class);
+        startActivity(it);
     }
 
     public void sair(View view) {

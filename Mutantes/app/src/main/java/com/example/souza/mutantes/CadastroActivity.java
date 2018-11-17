@@ -67,7 +67,7 @@ public class CadastroActivity extends AppCompatActivity {
                     mutanteDBOperations.updateMutante(nome.getText().toString(), habilidades, id);
                 }
                 builder.setTitle("Mutante Cadastrado!");
-                builder.setMessage("Cadastro do mutante " + nome.getText().toString() + "foi efetuado com sucesso!");
+                builder.setMessage("Cadastro do mutante " + nome.getText().toString() + " foi efetuado com sucesso!");
                 alerta = builder.create();
                 alerta.setOnDismissListener(new DialogInterface.OnDismissListener() {
                     @Override
