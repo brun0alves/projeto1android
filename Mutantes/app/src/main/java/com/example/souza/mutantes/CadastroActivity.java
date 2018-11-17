@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 public class CadastroActivity extends AppCompatActivity {
 
     private MutanteOperations mutanteDBOperations;
@@ -40,9 +42,23 @@ public class CadastroActivity extends AppCompatActivity {
         EditText nome = (EditText)findViewById(R.id.nome);
         if (!(habilidades.equals("") || nome.getText().toString().equals(""))) {
             if (aux2 == 0) {
+                List<Mutante> mutantes = mutanteDBOperations.getAllMutante();
+                for (Mutante m : mutantes) {
+                    if (m.getNome().equalsIgnoreCase(nome.getText().toString())){
+                        Toast.makeText(this, "Nome de mutante já cadastrado!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
                 mutanteDBOperations.addMutante(nome.getText().toString(), habilidades);
             }
             if (aux2 == 1) {
+                List<Mutante> mutantes = mutanteDBOperations.getAllMutante();
+                for (Mutante m : mutantes) {
+                    if (m.getNome().equalsIgnoreCase(nome.getText().toString())){
+                        Toast.makeText(this, "Nome de mutante já cadastrado!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }
                 mutanteDBOperations.updateMutante(nome.getText().toString(), habilidades, id);
             }
             finish();
