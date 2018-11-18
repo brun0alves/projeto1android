@@ -99,7 +99,7 @@ public class MutanteOperations {
     public List getMutanteByHabilidade(String habilidade){
         List mutantes = new ArrayList();
         Cursor cursor = database.query(MutanteBDWrapper.MUTANTE,
-                MUTANTE_TABLE_COLUMNS, MutanteBDWrapper.MUTANTE_HABILIDADE +" = ?", new String[]{ habilidade }, null, null, null, null);
+                MUTANTE_TABLE_COLUMNS, MutanteBDWrapper.MUTANTE_HABILIDADE +" LIKE ?", new String[]{ "%" + habilidade + "%"}, null, null, null, null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             Mutante mutante = parseMutante(cursor);
