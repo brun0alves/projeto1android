@@ -76,7 +76,7 @@ public class CadastroActivity extends AppCompatActivity {
                 });
                 alerta.show();
             } else {
-                String e = "Preencha todos os dados e adicione habilidades!";
+                String e = "Preencha todos os dados!";
                 throw new Exception(e);
             }
         } catch (Exception e) {
