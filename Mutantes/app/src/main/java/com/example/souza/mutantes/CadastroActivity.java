@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -14,24 +15,22 @@ import java.util.List;
 public class CadastroActivity extends AppCompatActivity {
 
     private MutanteOperations mutanteDBOperations;
-    String habilidades = "", aux;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
-
+        EditText habilidade = (EditText) findViewById(R.id.habilidade);
+        EditText nome = (EditText) findViewById(R.id.nome);
+        Intent it = getIntent();
+        Bundle params = it.getExtras();
+        int id = params.getInt("mutanteId");
         mutanteDBOperations = new MutanteOperations(this);
         mutanteDBOperations.open();
-    }
-
-    public void addHab(View view) {
-        EditText habilidade = (EditText) findViewById(R.id.habilidade);
-        aux = habilidade.getText().toString();
-        if (!habilidades.equals(""))
-            habilidades = habilidades + ", " + aux;
-        else
-            habilidades = aux;
+        if(id != 0) {
+            habilidade.setText(mutanteDBOperations.getMutanteById(id).getHabilidade(), TextView.BufferType.EDITABLE);
+            nome.setText(mutanteDBOperations.getMutanteById(id).getNome(), TextView.BufferType.EDITABLE);
+        }
     }
 
     public void finalizar(View view) {
@@ -54,17 +53,17 @@ public class CadastroActivity extends AppCompatActivity {
                             throw new Exception(e);
                         }
                     }
-                    mutanteDBOperations.addMutante(nome.getText().toString(), habilidades);
+                    mutanteDBOperations.addMutante(nome.getText().toString(), habilidade.getText().toString());
                 }
                 if (aux2 == 1) {
                     List<Mutante> mutantes = mutanteDBOperations.getAllMutante();
                     for (Mutante m : mutantes) {
-                        if (m.getNome().equalsIgnoreCase(nome.getText().toString())) {
+                        if (m.getNome().equalsIgnoreCase(nome.getText().toString()) && m.getId() != id) {
                             String e = "Mutante já cadastrado!";
                             throw new Exception(e);
                         }
                     }
-                    mutanteDBOperations.updateMutante(nome.getText().toString(), habilidades, id);
+                    mutanteDBOperations.updateMutante(nome.getText().toString(), habilidade.getText().toString(), id);
                 }
                 builder.setTitle("Mutante Cadastrado!");
                 builder.setMessage("Cadastro do mutante " + nome.getText().toString() + " foi efetuado com sucesso!");

@@ -82,6 +82,34 @@ public class MutanteOperations {
         return mutantes;
     }
 
+    public List getMutanteByName(String name){
+        List mutantes = new ArrayList();
+        Cursor cursor = database.query(MutanteBDWrapper.MUTANTE,
+                MUTANTE_TABLE_COLUMNS, MutanteBDWrapper.MUTANTE_NOME +" LIKE ?", new String[]{ "%" + name + "%"}, null, null, null, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Mutante mutante = parseMutante(cursor);
+            mutantes.add(mutante);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return mutantes;
+    }
+
+    public List getMutanteByHabilidade(String habilidade){
+        List mutantes = new ArrayList();
+        Cursor cursor = database.query(MutanteBDWrapper.MUTANTE,
+                MUTANTE_TABLE_COLUMNS, MutanteBDWrapper.MUTANTE_HABILIDADE +" = ?", new String[]{ habilidade }, null, null, null, null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            Mutante mutante = parseMutante(cursor);
+            mutantes.add(mutante);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return mutantes;
+    }
+
     private Mutante parseMutante(Cursor cursor) {
         Mutante mutante = new Mutante();
         mutante.setId(cursor.getInt(0));
