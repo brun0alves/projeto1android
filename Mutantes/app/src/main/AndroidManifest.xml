@@ -10,18 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+        </activity>
+        <activity android:name=".CadastroActivity" />
+        <activity
+            android:name=".ListaActivity"
+            android:label="@string/title_activity_lista" />
+        <activity android:name=".DetalhesActivity" />
+        <activity android:name=".BuscaActivity" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CadastroActivity" />
-        <activity
-            android:name=".ListaActivity"
-            android:label="@string/title_activity_lista" />
-        <activity android:name=".DetalhesActivity"></activity>
-        <activity android:name=".BuscaActivity"></activity>
     </application>
 
 </manifest>
